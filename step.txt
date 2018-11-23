@@ -22,9 +22,9 @@ prisma deploy based on environment
 - prisma deploy -e ../config/dev.env
 
 jdbc for postgre
-- <dbname>/?sslmode=true
+- <dbname>/?sslmode=require
 
 get production url
 1. prisma login
 2. prisma deploy -e ../config/prod.env
-   - 
+3. configure prod.env according to new endpoint in prisma.yml
