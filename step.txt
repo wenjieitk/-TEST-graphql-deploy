@@ -25,6 +25,17 @@ jdbc for postgre
 - <dbname>/?sslmode=require
 
 get production url
-1. prisma login
-2. prisma deploy -e ../config/prod.env
-3. configure prod.env according to new endpoint in prisma.yml
+ 1. prisma login
+ 2. prisma deploy -e ../config/prod.env
+ 3. configure prod.env according to new endpoint in prisma.yml
+
+deploy production nodeJs to heroku
+ 1. npm install -g heroku
+ 2. set port in index.js to environment variable - <process.env.PORT || 4000>
+ 3. set prisma.js endpoint -> process.env.PRISMA_ENDPOINT
+ 4. install env-cmd to run dev config for local development
+ 5. env-cmd ./config/dev.env nodemon ... in package.json
+ 6. set up heroku postbuild to run babel (if any) #--copy-files = add in those file other than .js
+ 7. install polyfill in index.js = <import '@babel/polyfill/noConflict'>
+ 8. set up environment variable by <heroku config:set xxxx>
+ 9. git push heroku master
