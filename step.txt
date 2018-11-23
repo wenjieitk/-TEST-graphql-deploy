@@ -39,3 +39,9 @@ deploy production nodeJs to heroku
  7. install polyfill in index.js = <import '@babel/polyfill/noConflict'>
  8. set up environment variable by <heroku config:set xxxx>
  9. git push heroku master
+
+
+set up environment variables
+ - prisma.js -> secret: process.env.PRISMA_SECRET
+ - prisma.yml -> secret: ${env:PRISMA_SECRET}
+ - heroku config:set PRISMA_SECRET=mysecret
