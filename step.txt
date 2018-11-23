@@ -45,3 +45,4 @@ set up environment variables
  - prisma.js -> secret: process.env.PRISMA_SECRET
  - prisma.yml -> secret: ${env:PRISMA_SECRET}
  - heroku config:set PRISMA_SECRET=mysecret
+ - generateToken.js && getUserId.js -> process.env.JWT_SECRET
