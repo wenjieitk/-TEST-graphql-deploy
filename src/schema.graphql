@@ -1,0 +1,137 @@
+# import UserOrderByInput, CommentOrderByInput, PostOrderByInput  from './generated/prisma.graphql'
+
+# get data
+type Query {
+    users(query: String, first: Int, skip: Int, after:String, orderBy: UserOrderByInput): [User!]!
+    posts(query: String, first: Int, skip: Int, after:String, orderBy: PostOrderByInput): [Post!]!
+    myPosts(query: String, first: Int, skip: Int, after:String): [Post!]!
+    comments(query: String, first: Int, skip: Int, after:String, orderBy: CommentOrderByInput): [Comment!]!
+    post(id: ID!): Post
+    me: User!
+}
+## pagination
+ # first- limit how many data to user
+ # skip - skip data and show next set of data
+ # after(id) - query the data AFTER this specific data
+ # 
+
+# API
+type Mutation {
+    createUser(data: CreateUserInput): AuthPayload!
+    deleteUser: User!
+    updateUser(data: UpdateUserInput!): User!
+    login(data: LoginUserInput!): AuthPayload!
+    createPost(data: CreatePostInput): Post!
+    deletePost(id: ID!): Post!
+    updatePost(id: ID!, data: UpdatePostInput!): Post!
+    createComment(data: CreateCommentInput): Comment!
+    deleteComment(id: ID!): Comment!
+    updateComment(id: ID!, data: UpdateCommentInput!): Comment!
+}
+
+# real time data 
+type Subscription {
+    count: Int!
+    comment(postId: ID!): CommentSubscriptionPayload!
+    post: PostSubscriptionPayload!
+    myPost: PostSubscriptionPayload!
+}
+
+# input schema
+input CreateUserInput {
+    name: String!
+    email: String!
+    age: Int
+    password: String!
+}
+
+input UpdateUserInput {
+    name: String
+    email: String
+    password: String
+}
+
+input CreatePostInput {
+    title: String!
+    body: String! 
+    published: Boolean!
+}
+
+input UpdatePostInput {
+    title: String
+    body: String 
+    published: Boolean
+    author: ID
+}
+
+input CreateCommentInput {
+    text: String!
+    post: String!
+}
+
+input UpdateCommentInput {
+    text: String
+}
+
+input LoginUserInput {
+    email: String!
+    password: String!
+}
+
+
+# data schema
+type User {
+    id: ID!
+    name: String!
+    email: String
+    password: String!
+    posts: [Post!]!
+    comments: [Comment!]!
+    updatedAt: String!
+    createdAt: String!
+}
+
+type Post {
+    id: ID!
+    title: String!
+    body: String!
+    published: Boolean!
+    author: User!
+    comments: [Comment!]!
+    updatedAt: String!
+    createdAt: String!
+}
+
+type Comment {
+    id: ID!
+    text: String!
+    author: User!
+    post: Post!
+    updatedAt: String!
+    createdAt: String!
+}
+
+type PostSubscriptionPayload {
+    mutation: MutationType!
+    node: Post
+}
+
+type CommentSubscriptionPayload {
+    mutation: MutationType!
+    node: Comment
+}
+
+
+# data schema
+enum MutationType {
+    CREATED
+    UPDATED
+    DELETED
+}
+
+
+# authentication
+type AuthPayload {
+    token: String!
+    user: User!
+}
