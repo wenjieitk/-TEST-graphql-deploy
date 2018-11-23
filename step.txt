@@ -5,30 +5,6 @@
 - docker-compose up -d
 - prisma deploy
 
-
----- graphql query ----
-
-- connect and create
-mutation{
-  createComment(data:{
-    text:"this is comment two"
-    author:{
-      create:{
-        name:"jie jie",
-        email:"newnew@gmail.com"
-      }
-    }
-    post: {
-      connect:{
-        id:"cjoe1gc2c001y0961gpw6r5sc"
-      }
-    }
-  }){
-    id
-    text
-  }
-}
-
 prisma-binding -> interact prisma with graphql
 graphql-cli -> to fetch the graphql schema from prisma and store it to local project
 
@@ -36,10 +12,19 @@ graphql-cli -> to fetch the graphql schema from prisma and store it to local pro
 @relation - [CASCADE,SET_NULL]
 
 
-- prisma token
-{
-  "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTQyMTg0MzMyLCJleHAiOjE1NDI3ODkxMzJ9.G1L0QyN5veypcq_WB23WQN7TLfLfP4R1Gaye2lMcp4M"
-}
+prisma token
+- {
+    "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTQyMTg0MzMyLCJleHAiOjE1NDI3ODkxMzJ9.G1L0QyN5veypcq_WB23WQN7TLfLfP4R1Gaye2lMcp4M"
+  }
 
 
+prisma deploy based on environment
 - prisma deploy -e ../config/dev.env
+
+jdbc for postgre
+- <dbname>/?sslmode=true
+
+get production url
+1. prisma login
+2. prisma deploy -e ../config/prod.env
+   - 
