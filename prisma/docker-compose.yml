@@ -13,11 +13,21 @@ services:
         databases:
           default:
             connector: postgres
-            host: dev.cipccd60jj8n.ap-southeast-1.rds.amazonaws.com
+            host: ec2-23-21-201-12.compute-1.amazonaws.com
             port: '5432'
-            database: thaigodev
-            user: thaigo_dev
-            password: laputadev
+            database: d4ssqqclb4brng
+            user: ujbzredjrirmou
+            password: fe3ce032c21ad7cfbc310fb01f517e9dbdf4a3f3a5caa8741bb4285a801b87b8
             migrations: true
             rawAccess: true
             ssl: true
+          # default:
+          #   connector: postgres
+          #   host: dev.cipccd60jj8n.ap-southeast-1.rds.amazonaws.com
+          #   port: '5432'
+          #   database: thaigodev
+          #   user: thaigo_dev
+          #   password: laputadev
+          #   migrations: true
+          #   rawAccess: true
+          #   ssl: true
