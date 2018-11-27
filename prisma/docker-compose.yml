@@ -11,23 +11,23 @@ services:
         # uncomment the next line and provide the env var PRISMA_MANAGEMENT_API_SECRET=my-secret to activate cluster security
         # managementApiSecret: my-secret
         databases:
-          default:
-            connector: postgres
-            host: taigo-dev.cipccd60jj8n.ap-southeast-1.rds.amazonaws.com
-            port: '5432'
-            database: taigodev
-            user: taigodev
-            password: taigodev
-            migrations: true
-            rawAccess: true
-            ssl: true
           # default:
           #   connector: postgres
-          #   host: dev.cipccd60jj8n.ap-southeast-1.rds.amazonaws.com
+          #   host: taigo-dev.cipccd60jj8n.ap-southeast-1.rds.amazonaws.com
           #   port: '5432'
-          #   database: thaigodev
-          #   user: thaigo_dev
-          #   password: laputadev
+          #   database: taigodev
+          #   user: taigodev
+          #   password: taigodev
           #   migrations: true
           #   rawAccess: true
           #   ssl: true
+          default:
+            connector: postgres
+            host: ec2-54-83-8-246.compute-1.amazonaws.com
+            port: '5432'
+            database: d217an5srk4vmi
+            user: wiibmyjumsvfgk
+            password: ee01d1377648dc37d475008ce2718e89276cf0be159e6ab9f82e2edddc03a9a1
+            migrations: true
+            rawAccess: true
+            ssl: true
