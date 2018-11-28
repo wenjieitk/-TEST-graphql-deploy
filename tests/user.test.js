@@ -8,6 +8,7 @@ const client = new ApolloBoost ({
 })
 
 beforeEach(async () => {
+    //extend jest timeOut
     jest.setTimeout(10000)
     // delete all the posts before each test
     await prisma.mutation.deleteManyPosts()
@@ -41,7 +42,7 @@ beforeEach(async () => {
             published: false,
             author: {
                 connect: {
-                    id: user.id
+                    id: user.id 
                 }
             }
         }
@@ -76,4 +77,44 @@ test('should create a new user', async() => {
         id: response.data.createUser.user.id
     })
     expect(exists).toBe(true)
+});
+
+test('should expose public author profiles',async () => {
+    const getUsers = gql `
+        query {
+            users {
+                id
+                name
+                email
+            }
+        }
+    `
+    const response = await client.query({
+        query: getUsers
+    })
+
+    expect(response.data.users.length).toBe(1)
+    expect(response.data.users[0].email).toBe(null)
+    expect(response.data.users[0].name).toBe('From Test')
+});
+
+test('should expose published posts', async () => {
+    const getPosts = gql `
+        query {
+            posts {
+                id
+                title
+                body
+                published
+            }
+        }
+    `
+
+    const response = await client.query({
+        query: getPosts
+    })
+
+    expect(response.data.posts.length).toBe(1)
+    expect(response.data.posts[0].published).toBe(true)
+
 });
