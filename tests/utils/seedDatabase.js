@@ -12,6 +12,24 @@ const userOne = {
     jwt: undefined
 }
 
+const postOne = {
+    input: {
+        title: `Test post`,
+        body: `testing body`,
+        published: true,
+    },
+    post: undefined
+}
+
+const postTwo = {
+    input: {
+        title: 'My draft post',
+        body: '',
+        published: false
+    },
+    post: undefined
+}
+
 const seedDatabase = async () => {
     //extend jest timeOut
     jest.setTimeout(10000)
@@ -26,11 +44,10 @@ const seedDatabase = async () => {
         userId: userOne.user.id
     },process.env.JWT_SECRET)
 
-    await prisma.mutation.createPost({
+    // create post 1
+    postOne.post = await prisma.mutation.createPost({
         data: {
-            title: `Test post`,
-            body: `testing body`,
-            published: true,
+            ...postOne.input,
             author: {
                 connect: {
                     id: userOne.user.id
@@ -38,14 +55,13 @@ const seedDatabase = async () => {
             }
         }
     })
-    await prisma.mutation.createPost({
+    // create post 2
+    postTwo.post = await prisma.mutation.createPost({
         data: {
-            title: `Test post 2`,
-            body: `testing body 2`,
-            published: false,
+            ...postTwo.input,
             author: {
                 connect: {
-                    id: userOne.user.id 
+                    id: userOne.user.id
                 }
             }
         }
@@ -54,5 +70,7 @@ const seedDatabase = async () => {
 
 export{
     seedDatabase as default,
-    userOne
+    userOne,
+    postOne,
+    postTwo
 }
