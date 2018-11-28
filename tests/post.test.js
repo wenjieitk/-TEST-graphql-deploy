@@ -19,7 +19,7 @@ test('Should fetch users posts', async () => {
     const client = getClient(userOne.jwt)
     const { data } = await client.query({ query: myPosts })
 
-    expect(data.myPosts.length).toBe(2)
+    expect(data.myPosts.length).toBe(1)
 })
 
 test('Should be able to update own post', async () => {
@@ -56,10 +56,10 @@ test('Should create a new post', async () => {
 test('Should delete post', async () => {
     const client = getClient(userOne.jwt)
     const variables = {
-        id: postTwo.post.id
+        id: postOne.post.id
     }
     await client.mutate({ mutation: deletePost, variables })
-    const exists = await prisma.exists.Post({ id: postTwo.post.id })
+    const exists = await prisma.exists.Post({ id: postOne.post.id })
 
     expect(exists).toBe(false)
 })
