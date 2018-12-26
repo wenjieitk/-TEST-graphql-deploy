@@ -14,7 +14,7 @@ graphql-cli -> to fetch the graphql schema from prisma and store it to local pro
 
 prisma token
 - {
-    "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTQyMTg0MzMyLCJleHAiOjE1NDI3ODkxMzJ9.G1L0QyN5veypcq_WB23WQN7TLfLfP4R1Gaye2lMcp4M"
+    "Authorization":"Bearer {token}"
   }
 
 
