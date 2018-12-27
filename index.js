@@ -18,7 +18,9 @@ async function callHeroku(error) {
     if(error)
         console.log(error)
     
-    await axios.get("http://sleepy-bastion-52779.herokuapp.com");
+    await axios.get("https://taigo-backend.herokuapp.com");
+    await axios.get("https://forwardertaigo.herokuapp.com");
+    await axios.get("https://hauliertaigo.herokuapp.com");
     await axios.get("https://taigo-dev-563402dbee.herokuapp.com/taigo-dev/dev1")
     var d = new Date().toLocaleDateString().replace(/\//g, '')
     
