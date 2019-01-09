@@ -1,5 +1,5 @@
 var axios = require("axios");
-
+var moment = require("moment")
 
 // const getBreeds = async () => {
 //     try {
@@ -35,10 +35,5 @@ setInterval(() => {
     }
 }, 60000); // every 5 minutes (300000)
 
-
-// async function fbcall () {
-//     const res = await axios.get("https://graph.accountkit.com/v1.3/me/?access_token=EMAWexlbxaP8cAY3uckxTA4cHizhA0w0QTJIZBb5kLUO36H76qbaqwinZBVfD6nZCjC6btchFfbw33Az4Rajc0SG6PviZBinDkoNuM3yWYZBQZDZD");
-//     console.log(res.data)
-// }
-
-// fbcall()
+const startOfMonth = moment().endOf('month').format()
+console.log(moment().subtract(24, "hours").format())
